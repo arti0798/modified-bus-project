@@ -29,5 +29,11 @@ public class BusServiceImpl implements BusService {
     bus.display();
     busDao.insert(bus);
   }
- // busDao.insert(bus);
+  public Bus fetchBusById(int busNo) {
+
+    System.out.println("bus id in BS "+ busNo);
+    return busDao.fetchBusById(busNo);
+
+  }
+
 }

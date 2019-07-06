@@ -12,4 +12,5 @@ public interface BusService {
 
   public List<Bus> getDetail();
   public void insert(Bus bus);
+  public Bus fetchBusById(int busNo);
 }
