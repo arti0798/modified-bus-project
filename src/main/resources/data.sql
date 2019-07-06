@@ -1,0 +1,1 @@
+insert into bus(busNo,busName ,noOfSeat) values('132','Neeta','34');
