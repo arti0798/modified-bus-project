@@ -12,4 +12,5 @@ public interface BusDao {
   public List<Bus> getDetail();
   public void insert(Bus bus);
   public List<Bus> fetchByName(String bName);
+  public Bus fetchBusById(int busNo);
 }

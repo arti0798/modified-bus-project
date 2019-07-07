@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
  * BusDaoImp
  */
 @Repository
-public class BusDaoImpl implements BusDao{
+public class BusDaoImpl implements BusDao {
 
   NamedParameterJdbcTemplate template;
 
@@ -32,6 +32,7 @@ public class BusDaoImpl implements BusDao{
 
     return listOfBus;
   }
+
 
   @Override
   public void insert(Bus bus) {
@@ -57,4 +58,20 @@ public class BusDaoImpl implements BusDao{
     return listOfBus;
   }
 
-}
+  @Override
+  public Bus fetchBusById(int busNo) {
+
+    System.out.println("busNo "+ busNo);
+    String fetchStr = "select * from bus where busNo = :bNo";
+    SqlParameterSource param = new MapSqlParameterSource().addValue("bNo", busNo);
+
+    List<Bus> busList = template.query(fetchStr, param, new BusRowMapper());
+    System.out.println("bus list "+ busList);
+
+    if(busList.size() == 1) {
+
+      return busList.get(0);
+    }
+    return null;
+  }
+} 

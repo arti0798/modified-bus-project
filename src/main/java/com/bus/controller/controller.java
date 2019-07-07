@@ -24,19 +24,27 @@ public class controller {
   @Resource BusService busService;
 
   @GetMapping(value = "/get")
+  //@RequestMapping(path = "/get", method = RequestMethod.GET)
   public List<Bus> fetchBuses() {
 
     List<Bus> listOfBus = busService.getDetail();    
     return listOfBus;
   }
 
+  @GetMapping(value = "/{busNo}")
+  public Bus fetchBusById(@PathVariable int busNo) {
+
+    System.out.println("Bus no is " + busNo);
+    return busService.fetchBusById(busNo);
+  }
+
   @PostMapping(path = "/create")
   public String insert(@RequestBody Bus bus) {
-
-    
+   
     busService.insert(bus);
     return "Inserted Successfully";
   }
+  
   @GetMapping(value = "/get/{bName}")
   public List<Bus> fetchName(@PathVariable String bName) {
 

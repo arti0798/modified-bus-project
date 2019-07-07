@@ -36,4 +36,12 @@ public class BusServiceImpl implements BusService {
     System.out.println("in service bName "+ bName);
     return busDao.fetchByName(bName);
   }
+  
+  public Bus fetchBusById(int busNo) {
+
+    System.out.println("bus id in BS "+ busNo);
+    return busDao.fetchBusById(busNo);
+
+  }
+
 }
