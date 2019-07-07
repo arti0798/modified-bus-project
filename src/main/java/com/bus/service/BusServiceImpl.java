@@ -29,5 +29,11 @@ public class BusServiceImpl implements BusService {
     bus.display();
     busDao.insert(bus);
   }
- // busDao.insert(bus);
+
+  @Override
+  public List<Bus> fetchByName(String bName) {
+
+    System.out.println("in service bName "+ bName);
+    return busDao.fetchByName(bName);
+  }
 }

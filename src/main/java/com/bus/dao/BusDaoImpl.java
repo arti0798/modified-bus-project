@@ -46,4 +46,15 @@ public class BusDaoImpl implements BusDao{
     bus.display();
 
   }
+  public List<Bus> fetchByName(String value) {
+
+    System.out.println("dao bName"+ value);
+    String sql = "select * from bus where busName = :bName";
+    SqlParameterSource param = new MapSqlParameterSource().addValue("bName", value);
+
+    List<Bus> listOfBus = template.query(sql, param, new BusRowMapper());
+    System.out.println("bus list in dao "+ listOfBus);
+    return listOfBus;
+  }
+
 }

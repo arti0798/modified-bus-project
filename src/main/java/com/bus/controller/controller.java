@@ -8,6 +8,7 @@ import com.bus.entity.Bus;
 import com.bus.service.BusService;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,4 +37,13 @@ public class controller {
     busService.insert(bus);
     return "Inserted Successfully";
   }
+  @GetMapping(value = "/get/{bName}")
+  public List<Bus> fetchName(@PathVariable String bName) {
+
+    List<Bus> listOfBus = busService.fetchByName(bName);
+    System.out.println("Controller bus list "+ listOfBus);    
+
+    return listOfBus;
+  }
+
 }
