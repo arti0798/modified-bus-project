@@ -1,12 +1,18 @@
 package com.bus.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import com.bus.entity.Bus;
 import com.bus.service.BusService;
 
+import org.springframework.boot.json.BasicJsonParser;
+import org.springframework.boot.json.JsonParser;
+//import org.jboss.logging.Param;
+//import org.springframework.boot.actuate.endpoint.annotation.DeleteOperation;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,7 +50,7 @@ public class controller {
     busService.insert(bus);
     return "Inserted Successfully";
   }
-  
+
   @GetMapping(value = "/get/{bName}")
   public List<Bus> fetchName(@PathVariable String bName) {
 
@@ -53,5 +59,20 @@ public class controller {
 
     return listOfBus;
   }
+  @DeleteMapping(value = "deleteId")
+  public String deleteByBusNo(@RequestBody String args) {
 
+    try {
+
+      JsonParser jsonParser = new BasicJsonParser();
+      Map<String, Object> jsonMap = jsonParser.parseMap(args);
+
+      String busNo = (String.valueOf(jsonMap.get("busNo")));
+      busService.deleteBusById(busNo);
+    } catch (Exception e) {
+      System.out.println("Error is " + e);
+    }
+    return "deleted successfully";
+  }
+  
 }

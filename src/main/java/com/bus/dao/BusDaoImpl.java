@@ -1,10 +1,15 @@
 package com.bus.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.bus.entity.Bus;
 import com.bus.mapping.BusRowMapper;
 
+import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -73,5 +78,14 @@ public class BusDaoImpl implements BusDao {
       return busList.get(0);
     }
     return null;
+  }
+  @Override
+  public void deleteBusById(String busNo) {
+
+    String sql = "delete from bus where busNo = :busNo";
+    SqlParameterSource param = new MapSqlParameterSource().addValue("busNo", Integer.parseInt(busNo));
+
+    template.update(sql, param);
+    
   }
 } 
