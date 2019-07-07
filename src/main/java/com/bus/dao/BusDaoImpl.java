@@ -33,6 +33,7 @@ public class BusDaoImpl implements BusDao{
     return listOfBus;
   }
 
+
   @Override
   public void insert(Bus bus) {
 
@@ -50,8 +51,8 @@ public class BusDaoImpl implements BusDao{
   public Bus fetchBusById(int busNo) {
 
     System.out.println("busNo "+ busNo);
-    String fetchStr = "select * from bus where busNo = :busNo";
-    SqlParameterSource param = new MapSqlParameterSource().addValue("busNo", busNo);
+    String fetchStr = "select * from bus where busNo = :bNo";
+    SqlParameterSource param = new MapSqlParameterSource().addValue("bNo", busNo);
 
     List<Bus> busList = template.query(fetchStr, param, new BusRowMapper());
     System.out.println("bus list "+ busList);
