@@ -1,6 +1,7 @@
 package com.bus.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -49,5 +50,12 @@ public class BusServiceImpl implements BusService {
     busDao.deleteBusById(busNo);
   }
 
+
+  @Override
+  public void updateByBusNo(Map<String, Object> json) {
+
+    System.out.println("update in bus service "+ json);
+    busDao.updateByBusNo(json);
+  }
 
 }

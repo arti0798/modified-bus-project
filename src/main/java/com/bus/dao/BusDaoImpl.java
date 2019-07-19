@@ -88,4 +88,29 @@ public class BusDaoImpl implements BusDao {
     template.update(sql, param);
     
   }
+
+  @Override
+  public void updateByBusNo(Map<String, Object> args) {
+
+    System.out.println("value in dao "+args);
+
+    String updateQuery = "update bus set ";
+    
+    MapSqlParameterSource source = new MapSqlParameterSource();
+    for (String fieldName : args.keySet()) {
+
+      if (!fieldName.equals("busNo")) {        
+        updateQuery += fieldName +" = :"+fieldName + ", ";
+      }
+      source.addValue(fieldName, args.get(fieldName));
+    }
+
+    // REGEX, 
+    updateQuery = updateQuery.replaceAll(", $", " ");
+    updateQuery += "where" + " busNo = :busNo";
+
+    SqlParameterSource param = source;
+    template.update(updateQuery, param);
+  }
+
 } 
