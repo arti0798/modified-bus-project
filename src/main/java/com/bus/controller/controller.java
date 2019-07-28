@@ -35,7 +35,7 @@ public class controller {
   @GetMapping(value = "/get")
   //@RequestMapping(path = "/get", method = RequestMethod.GET)
   public List<Bus> fetchBuses() {
-
+    System.out.println("In Bus Controller");
     List<Bus> listOfBus = busService.getDetail();    
     return listOfBus;
   }
